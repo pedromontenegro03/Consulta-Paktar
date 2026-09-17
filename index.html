@@ -3,103 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulta PAKTAR</title>
+
+<title>PAKTAR - Consulta de Deuda</title>
 
 <style>
+
 body{
+    margin:0;
     font-family: Arial, sans-serif;
-    background:#f4f6f9;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+    background:#f5f7fa;
 }
 
-.card{
+.container{
+    max-width:600px;
+    margin:40px auto;
     background:white;
     padding:30px;
-    border-radius:10px;
-    width:400px;
-    box-shadow:0 0 15px rgba(0,0,0,0.1);
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.10);
 }
 
-h2{
-    color:#1f4e79;
+.logo{
     text-align:center;
+    margin-bottom:20px;
 }
 
-input,select{
+.logo img{
+    max-width:250px;
+}
+
+h1{
+    text-align:center;
+    color:#0d4f8b;
+    margin-bottom:30px;
+}
+
+input,
+select{
     width:100%;
-    padding:10px;
+    padding:12px;
     margin-top:10px;
+    margin-bottom:15px;
     border:1px solid #ccc;
-    border-radius:5px;
+    border-radius:6px;
+    box-sizing:border-box;
 }
 
 button{
     width:100%;
-    padding:12px;
-    background:#1f4e79;
+    padding:14px;
+    background:#0d4f8b;
     color:white;
     border:none;
-    border-radius:5px;
+    border-radius:6px;
+    font-size:16px;
     cursor:pointer;
-    margin-top:15px;
+}
+
+button:hover{
+    background:#08365f;
 }
 
 #mensaje{
+    display:none;
     margin-top:20px;
-    color:green;
+    padding:15px;
+    border-radius:5px;
+    background:#e8f7e8;
+    color:#216e21;
     font-weight:bold;
     text-align:center;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
-<h2>Consulta de Deuda PAKTAR</h2>
+<div class="logo">
+    <img-paktar.jpg
+</div>
+
+<h1>Consulta de Deuda</h1>
 
 <form id="consultaForm">
 
-<input type="text" placeholder="Nombre y apellido" required>
+<input type="text" placeholder="Nombre y Apellido" required>
 
 <input type="text" placeholder="DNI" required>
 
 <input type="text" placeholder="Teléfono" required>
 
 <select id="cartera" required>
+
 <option value="">Seleccione una cartera</option>
-<option>BSF</option>
-<option>EDESUR</option>
-<option>PATAGONIA</option>
-<option>SMG</option>
-<option>TARJETA PLATA</option>
-<option>CREDITOP</option>
-<option>CREDIPAZ</option>
-<option>CENCOSUD</option>
-<option>ADT</option>
-<option>BRUBANK</option>
-<option>CREDITECH</option>
+
+<option value="BSF">BSF</option>
+<option value="EDESUR">EDESUR</option>
+<option value="PATAGONIA">PATAGONIA</option>
+<option value="SMG">SMG</option>
+<option value="TARJETA PLATA">TARJETA PLATA</option>
+<option value="CREDITOP">CREDITOP</option>
+<option value="CREDIPAZ">CREDIPAZ</option>
+<option value="CENCOSUD">CENCOSUD</option>
+<option value="ADT">ADT</option>
+<option value="BRUBANK">BRUBANK</option>
+<option value="CREDITECH">CREDITECH</option>
+
 </select>
 
-<button type="submit">Derivar consulta</button>
+<button type="submit">Derivar Consulta</button>
 
 </form>
 
-<div id="mensaje"></div>
+<div id="mensaje">
+✅ Su consulta fue derivada correctamente.<br>
+Un operador especializado se comunicará con usted a la brevedad.
+</div>
 
 </div>
 
 <script>
+
 document.getElementById("consultaForm").addEventListener("submit", function(e){
+
 e.preventDefault();
 
-document.getElementById("mensaje").innerHTML =
-"✅ Su consulta fue derivada correctamente. Un operador se comunicará con usted a la brevedad.";
+document.getElementById("mensaje").style.display = "block";
+
 });
+
 </script>
 
 </body>
