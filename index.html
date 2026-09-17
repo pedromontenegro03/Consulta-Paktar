@@ -72,17 +72,17 @@ button{
 
 <select id="cartera" required>
 <option value="">Seleccione una cartera</option>
-<option value="BSF">BSF</option>
-<option value="EDESUR">EDESUR</option>
-<option value="PATAGONIA">PATAGONIA</option>
-<option value="SMG">SMG</option>
-<option value="TARJETA_PLATA">TARJETA PLATA</option>
-<option value="CREDITOP">CREDITOP</option>
-<option value="CREDIPAZ">CREDIPAZ</option>
-<option value="CENCOSUD">CENCOSUD</option>
-<option value="ADT">ADT</option>
-<option value="BRUBANK">BRUBANK</option>
-<option value="CREDITECH">CREDITECH</option>
+<option>BSF</option>
+<option>EDESUR</option>
+<option>PATAGONIA</option>
+<option>SMG</option>
+<option>TARJETA PLATA</option>
+<option>CREDITOP</option>
+<option>CREDIPAZ</option>
+<option>CENCOSUD</option>
+<option>ADT</option>
+<option>BRUBANK</option>
+<option>CREDITECH</option>
 </select>
 
 <button type="submit">Derivar consulta</button>
@@ -94,16 +94,12 @@ button{
 </div>
 
 <script>
-
 document.getElementById("consultaForm").addEventListener("submit", function(e){
-
 e.preventDefault();
 
 document.getElementById("mensaje").innerHTML =
 "✅ Su consulta fue derivada correctamente. Un operador se comunicará con usted a la brevedad.";
-
 });
-
 </script>
 
 </body>
