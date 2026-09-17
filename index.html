@@ -131,16 +131,33 @@ document.getElementById("consultaForm").addEventListener("submit", function(e){
 
     e.preventDefault();
 
+    let nombre = document.querySelector('input[placeholder="Nombre y Apellido"]').value;
+    let dni = document.querySelector('input[placeholder="DNI"]').value;
+    let telefono = document.querySelector('input[placeholder="Teléfono"]').value;
+    let cartera = document.getElementById("cartera").value;
+
     document.getElementById("mensaje").style.display = "block";
+
+    let mensaje =
+`Nueva consulta web PAKTAR
+
+Cartera: ${cartera}
+Nombre y Apellido: ${nombre}
+DNI: ${dni}
+Teléfono: ${telefono}
+
+Solicita contacto por gestión de deuda.`;
+
+    let numeroWhatsapp = "5491154895952";
 
     setTimeout(function(){
 
         window.open(
-            "https://wa.me/5491154895952?text=Hola,%20realic%C3%A9%20una%20consulta%20desde%20la%20web%20de%20PAKTAR",
+            "https://wa.me/" + numeroWhatsapp + "?text=" + encodeURIComponent(mensaje),
             "_blank"
         );
 
-    }, 1500);
+    },1500);
 
 });
 
