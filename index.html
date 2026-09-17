@@ -129,9 +129,18 @@ Un operador especializado se comunicará con usted a la brevedad.
 
 document.getElementById("consultaForm").addEventListener("submit", function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-document.getElementById("mensaje").style.display = "block";
+    document.getElementById("mensaje").style.display = "block";
+
+    setTimeout(function(){
+
+        window.open(
+            "https://wa.me/5491154895952?text=Hola,%20realic%C3%A9%20una%20consulta%20desde%20la%20web%20de%20PAKTAR",
+            "_blank"
+        );
+
+    }, 1500);
 
 });
 
