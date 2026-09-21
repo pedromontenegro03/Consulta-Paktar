@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
 
 body{
     margin:0;
-    font-family: Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#f5f7fa;
 }
 
@@ -20,7 +21,7 @@ body{
     background:white;
     padding:30px;
     border-radius:12px;
-    box-shadow:0 0 20px rgba(0,0,0,0.10);
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
 }
 
 .logo{
@@ -35,14 +36,11 @@ body{
 h1{
     text-align:center;
     color:#0d4f8b;
-    margin-bottom:30px;
 }
 
-input,
-select{
+input,select{
     width:100%;
     padding:12px;
-    margin-top:10px;
     margin-bottom:15px;
     border:1px solid #ccc;
     border-radius:6px;
@@ -56,8 +54,8 @@ button{
     color:white;
     border:none;
     border-radius:6px;
-    font-size:16px;
     cursor:pointer;
+    font-size:16px;
 }
 
 button:hover{
@@ -68,14 +66,14 @@ button:hover{
     display:none;
     margin-top:20px;
     padding:15px;
-    border-radius:5px;
     background:#e8f7e8;
     color:#216e21;
-    font-weight:bold;
+    border-radius:6px;
     text-align:center;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -83,33 +81,35 @@ button:hover{
 <div class="container">
 
 <div class="logo">
-<img src="paktar.png" alt="PAKTAR">
+    <img src="paktar.png" alt="PAKTAR">
+</div>
 
 <h1>Consulta de Deuda</h1>
 
 <form id="consultaForm">
 
-<input type="text" placeholder="Nombre y Apellido" required>
+<input id="nombre" type="text" placeholder="Nombre y Apellido" required>
 
-<input type="text" placeholder="DNI" required>
+<input id="dni" type="text" placeholder="DNI" required>
 
-<input type="text" placeholder="Teléfono" required>
+<input id="telefono" type="text" placeholder="Teléfono" required>
 
 <select id="cartera" required>
+    <option value="">Seleccione una cartera</option>
 
-<option value="">Seleccione una cartera</option>
-
-<option value="EDESUR">EDESUR</option>
-<option value="PATAGONIA">PATAGONIA</option>
-<option value="SMG">SMG</option>
-<option value="CREDIPAZ">CREDIPAZ</option>
-<option value="CENCOSUD">CENCOSUD</option>
-<option value="BRUBANK">BRUBANK</option>
-<option value="CREDITECH">CREDITECH</option>
-<option value="DIRECTO">DIRECTO</option>
+    <option value="EDESUR">EDESUR</option>
+    <option value="PATAGONIA">PATAGONIA</option>
+    <option value="SMG">SMG</option>
+    <option value="CREDIPAZ">CREDIPAZ</option>
+    <option value="CENCOSUD">CENCOSUD</option>
+    <option value="BRUBANK">BRUBANK</option>
+    <option value="CREDITECH">CREDITECH</option>
+    <option value="DIRECTO">DIRECTO</option>
 </select>
 
-<button type="submit">Derivar Consulta</button>
+<button type="submit">
+Derivar Consulta
+</button>
 
 </form>
 
@@ -124,92 +124,92 @@ Un operador especializado se comunicará con usted a la brevedad.
 
 document.getElementById("consultaForm").addEventListener("submit", function(e){
 
-    e.preventDefault();
+e.preventDefault();
 
-    let nombre = document.querySelector('input[placeholder="Nombre y Apellido"]').value;
-    let dni = document.querySelector('input[placeholder="DNI"]').value;
-    let telefono = document.querySelector('input[placeholder="Teléfono"]').value;
-    let cartera = document.getElementById("cartera").value;
+let nombre = document.getElementById("nombre").value;
+let dni = document.getElementById("dni").value;
+let telefono = document.getElementById("telefono").value;
+let cartera = document.getElementById("cartera").value;
 
-    document.getElementById("mensaje").style.display = "block";
+const ahora = new Date();
+const hora = ahora.getHours();
+const minuto = ahora.getMinutes();
 
-    const ahora = new Date();
-    const hora = ahora.getHours();
-    const minuto = ahora.getMinutes();
+let turno = "manana";
 
-    let turno = "manana";
+if (hora > 14 || (hora === 14 && minuto >= 30)) {
+    turno = "tarde";
+}
 
-    if(hora > 14 || (hora === 14 && minuto >= 30)){
-        turno = "tarde";
+const numeros = {
+
+    EDESUR: {
+        manana: "5491164139414",
+        tarde: "5491164139414"
+    },
+
+    PATAGONIA: {
+        manana: "5491125997626",
+        tarde: "5491144408132"
+    },
+
+    SMG: {
+        manana: "5491124077959",
+        tarde: "5491126816885"
+    },
+
+    CREDIPAZ: {
+        manana: "5491173656691",
+        tarde: "5491139085804"
+    },
+
+    CENCOSUD: {
+        manana: "5491138610715",
+        tarde: "5491138610715"
+    },
+
+    BRUBANK: {
+        manana: "5491165950797",
+        tarde: "5491164890040"
+    },
+
+    CREDITECH: {
+        manana: "5491151322304",
+        tarde: "5491135599509"
+    },
+
+    DIRECTO: {
+        manana: "5491153763671",
+        tarde: "5491172375051"
     }
 
-    const numeros = {
+};
 
-        EDESUR: {
-            manana: "5491164139414",
-            tarde: "5491164139414"
-        },
+let numeroDestino = numeros[cartera][turno];
 
-        PATAGONIA: {
-            manana: "5491125997626",
-            tarde: "5491144408132"
-        },
+let mensaje =
+"Nueva consulta web PAKTAR%0A%0A" +
+"Cartera: " + cartera + "%0A" +
+"Turno: " + turno + "%0A%0A" +
+"Nombre y Apellido: " + nombre + "%0A" +
+"DNI: " + dni + "%0A" +
+"Telefono: " + telefono + "%0A%0A" +
+"Solicita contacto por consulta de deuda.";
 
-        SMG: {
-            manana: "5491124077959",
-            tarde: "5491126816885"
-        },
+document.getElementById("mensaje").style.display = "block";
 
-        CREDIPAZ: {
-            manana: "5491173656691",
-            tarde: "5491139085804"
-        },
+setTimeout(function(){
 
-        CENCOSUD: {
-            manana: "5491138610715",
-            tarde: "5491138610715"
-        },
-
-        BRUBANK: {
-            manana: "5491165950797",
-            tarde: "5491164890040"
-        },
-
-        CREDITECH: {
-            manana: "5491151322304",
-            tarde: "5491135599509"
-         },
-         DIRECTO: {
-            manana: "5491153763671",
-            tarde: "5491172375051"
-         }
-
-    };
-
-    let numeroDestino = numeros[cartera][turno];
-
-    let mensaje =
-`Nueva consulta web PAKTAR
-
-Cartera: ${cartera}
-Turno: ${turno}
-
-Nombre y Apellido: ${nombre}
-DNI: ${dni}
-Teléfono: ${telefono}
-
-Solicita contacto por consulta de deuda.`;
-
-    setTimeout(function(){
 window.open(
-    "https://wa.me/" + numeroDestino + "?text=" + encodeURIComponent(mensaje),
-    "_blank"
+"https://wa.me/" + numeroDestino + "?text=" + mensaje,
+"_blank"
 );
 
-    }, 1500);
+},1500);
 
 });
 
 </script>
+
 </body>
 </html>
