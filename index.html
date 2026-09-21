@@ -102,7 +102,7 @@ button:hover{
 
 <option value="BSF">BSF</option>
 <option value="EDESUR">EDESUR</option>
-<option value="PATAGONIA">PATAGONIA</option>
+<option value="PATAGONIA TARDIA">PATAGONIA</option>
 <option value="SMG">SMG</option>
 <option value="TARJETA PLATA">TARJETA PLATA</option>
 <option value="CREDITOP">CREDITOP</option>
@@ -111,7 +111,9 @@ button:hover{
 <option value="ADT">ADT</option>
 <option value="BRUBANK">BRUBANK</option>
 <option value="CREDITECH">CREDITECH</option>
-
+<option value="MELI">MELI</option>
+<option value="COTO">COTO</option>
+<option value="DIRECTO">DIRECTO</option>
 </select>
 
 <button type="submit">Derivar Consulta</button>
@@ -138,30 +140,94 @@ document.getElementById("consultaForm").addEventListener("submit", function(e){
 
     document.getElementById("mensaje").style.display = "block";
 
+    const ahora = new Date();
+    const hora = ahora.getHours();
+    const minuto = ahora.getMinutes();
+
+    let turno = "manana";
+
+    if(hora > 14 || (hora === 14 && minuto >= 30)){
+        turno = "tarde";
+    }
+
+    const numeros = {
+
+        EDESUR: {
+            manana: "5491164139414",
+            tarde: "5491164139414"
+        },
+
+        PATAGONIA: {
+            manana: "5491176029371",
+            tarde: "5491125997626"
+        },
+
+        SMG: {
+            manana: "5491124077959",
+            tarde: "5491126816885"
+        },
+
+        "TARJETA PLATA": {
+            manana: "5491199999999",
+            tarde: "5491100000000"
+        },
+
+        CREDIPAZ: {
+            manana: "5491173856691",
+            tarde: "5491139085804"
+        },
+
+        CENCOSUD: {
+            manana: "5491138610715",
+            tarde: "5491138610715"
+        },
+
+        ADT: {
+            manana: "5491168671434",
+            tarde: "5491168671434"
+        },
+
+        BRUBANK: {
+            manana: "5491185950797",
+            tarde: "5491164890040"
+        },
+
+        CREDITECH: {
+            manana: "5491151322304",
+            tarde: "5491135599509"
+         },
+         DIRECTO: {
+            manana: "5491153763671",
+            tarde: "5491172375051"
+         }
+
+    };
+
+    let numeroDestino = numeros[cartera][turno];
+
     let mensaje =
 `Nueva consulta web PAKTAR
 
 Cartera: ${cartera}
+Turno: ${turno}
+
 Nombre y Apellido: ${nombre}
 DNI: ${dni}
 Teléfono: ${telefono}
 
-Solicita contacto por gestión de deuda.`;
-
-    let numeroWhatsapp = "5491154895952";
+Solicita contacto por consulta de deuda.`;
 
     setTimeout(function(){
 
         window.open(
-            "https://wa.me/" + numeroWhatsapp + "?text=" + encodeURIComponent(mensaje),
+            "https://wa.me/" + numeroDestino + "?text=" + encodeURIComponent(mensaje),
             "_blank"
         );
 
-    },1500);
+    }, 1500);
 
 });
 
 </script>
-
 </body>
 </html>
