@@ -187,26 +187,24 @@ const numeros = {
 
 let numeroDestino = numeros[cartera][turno];
 
-let mensaje =
-"Nueva consulta web PAKTAR%0A%0A" +
-"Cartera: " + cartera + "%0A" +
-"Turno: " + turno + "%0A%0A" +
-"Nombre y Apellido: " + nombre + "%0A" +
-"DNI: " + dni + "%0A" +
-"Telefono: " + telefono + "%0A%0A" +
-"Solicita contacto por consulta de deuda.";
-
 document.getElementById("mensaje").style.display = "block";
 
 setTimeout(function(){
 
-window.open(
-"https://wa.me/" + numeroDestino + "?text=" + mensaje,
-"_blank"
+window.location.href =
+"https://wa.me/" + numeroDestino + "?text=" +
+encodeURIComponent(
+"Nueva consulta web PAKTAR\n\n" +
+"Cartera: " + cartera + "\n" +
+"Turno: " + turno + "\n\n" +
+"Nombre y Apellido: " + nombre + "\n" +
+"DNI: " + dni + "\n" +
+"Telefono: " + telefono + "\n\n" +
+"Solicita contacto por consulta de deuda."
 );
 
 },1500);
-
+``
 });
 
 </script>
