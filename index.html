@@ -124,94 +124,100 @@ Un operador especializado se comunicará con usted a la brevedad.
 
 document.getElementById("consultaForm").addEventListener("submit", function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-let nombre = document.getElementById("nombre").value;
-let dni = document.getElementById("dni").value;
-let telefono = document.getElementById("telefono").value;
-let cartera = document.getElementById("cartera").value;
+    let nombre = document.getElementById("nombre").value;
+    let dni = document.getElementById("dni").value;
+    let telefono = document.getElementById("telefono").value;
+    let cartera = document.getElementById("cartera").value;
 
-const ahora = new Date();
-const hora = ahora.getHours();
-const minuto = ahora.getMinutes();
+    const ahora = new Date();
+    const hora = ahora.getHours();
+    const minuto = ahora.getMinutes();
 
-let turno = "manana";
+    let turno = "manana";
 
-if (hora > 14 || (hora === 14 && minuto >= 30)) {
-    turno = "tarde";
-}
-
-const numeros = {
-
-    EDESUR: {
-        manana:"5491164139414",
-        tarde: "5491164139414"
-    },
-
-    PATAGONIA: {
-        manana: ["5491125997626",
-                 "5491168672755",
-                 "5491131408223"
-                 ]
-        tarde: ["5491144408132"
-                "5491176029371"
-                "5491159550157"
-                "5491138922901"
-                ]
-    },
-
-    SMG: {
-        manana: "5491124077959",
-        tarde: "5491126816885"
-    },
-
-    CREDIPAZ: {
-        manana: "5491173656691",
-        tarde: "5491139085804"
-    },
-
-    CENCOSUD: {
-        manana: "5491138610715",
-        tarde: "5491138610715"
-    },
-
-    BRUBANK: {
-        manana: "5491165950797",
-        tarde: "5491164890040"
-    },
-
-    CREDITECH: {
-        manana: "5491151322304",
-        tarde: "5491135599509"
-    },
-
-    DIRECTO: {
-        manana: "5491153763671",
-        tarde: "5491172375051"
+    if (hora > 14 || (hora === 14 && minuto >= 30)) {
+        turno = "tarde";
     }
 
-};
+    const numeros = {
 
-let numeroDestino = numeros[cartera][turno];
+        EDESUR: {
+            manana: ["5491164139414"],
+            tarde: ["5491164139414"]
+        },
 
-document.getElementById("mensaje").style.display = "block";
+        PATAGONIA: {
+            manana: [
+                "5491125997626",
+                "5491168672755",
+                "5491131408223"
+            ],
+            tarde: [
+                "5491144408132",
+                "5491176029371",
+                "5491159550157",
+                "5491138922901"
+            ]
+        },
 
-setTimeout(function(){
+        SMG: {
+            manana: ["5491124077959"],
+            tarde: ["5491126816885"]
+        },
 
-window.location.href =
-"https://wa.me/" + numeroDestino + "?text=" +
-encodeURIComponent(
-"Nueva consulta web PAKTAR\n\n" +
-"Cartera: " + cartera + "\n" +
-"Turno: " + turno + "\n\n" +
-"Nombre y Apellido: " + nombre + "\n" +
-"DNI: " + dni + "\n" +
-"Telefono: " + telefono + "\n\n" +
-"Solicita contacto por consulta de deuda."
-);
+        CREDIPAZ: {
+            manana: ["5491173656691"],
+            tarde: ["5491139085804"]
+        },
 
-},1500);
-``
+        CENCOSUD: {
+            manana: ["5491138610715"],
+            tarde: ["5491138610715"]
+        },
+
+        BRUBANK: {
+            manana: ["5491165950797"],
+            tarde: ["5491164890040"]
+        },
+
+        CREDITECH: {
+            manana: ["5491151322304"],
+            tarde: ["5491135599509"]
+        },
+
+        DIRECTO: {
+            manana: ["5491153763671"],
+            tarde: ["5491172375051"]
+        }
+
+    };
+
+    let listaNumeros = numeros[cartera][turno];
+
+    let numeroDestino =
+        listaNumeros[Math.floor(Math.random() * listaNumeros.length)];
+
+    document.getElementById("mensaje").style.display = "block";
+
+    setTimeout(function(){
+
+        window.location.href =
+        "https://wa.me/" + numeroDestino +
+        "?text=" +
+        encodeURIComponent(
+            "Nueva consulta web PAKTAR\n\n" +
+            "Cartera: " + cartera + "\n" +
+            "Turno: " + turno + "\n\n" +
+            "Nombre y Apellido: " + nombre + "\n" +
+            "DNI: " + dni + "\n" +
+            "Telefono: " + telefono + "\n\n" +
+            "Solicita contacto por consulta de deuda."
+        );
+
+    }, 1500);
+
 });
 
 </script>
