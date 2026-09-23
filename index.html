@@ -90,7 +90,14 @@ button:hover{
 
 <input id="nombre" type="text" placeholder="Nombre y Apellido" required>
 
-<input id="dni" type="text" placeholder="DNI" required>
+<input
+id="dni"
+type="text"
+placeholder="DNI"
+minlength="8"
+pattern="[0-9]+"
+title="Ingrese al menos 8 números"
+required>
 
 <input id="telefono" type="text" placeholder="Teléfono" required>
 
